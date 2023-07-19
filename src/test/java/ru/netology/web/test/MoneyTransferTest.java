@@ -3,6 +3,7 @@ package ru.netology.web.test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import lombok.Value;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.LoginPageV2;

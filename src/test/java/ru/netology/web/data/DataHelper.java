@@ -1,6 +1,7 @@
 package ru.netology.web.data;
 
 import lombok.Value;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -13,7 +14,8 @@ public class DataHelper {
         return new AuthInfo("vasya", "qwerty123");
     }
 
-    public static AuthInfo getOtherAuthInfo(AuthInfo original) {
+
+    public static @NotNull AuthInfo getOtherAuthInfo(AuthInfo original) {
         return new AuthInfo("petya", "123qwerty");
     }
 
