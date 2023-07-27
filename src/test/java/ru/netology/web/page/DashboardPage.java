@@ -1,6 +1,5 @@
 package ru.netology.web.page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
@@ -20,22 +19,27 @@ public class DashboardPage {
 
 
 
+
   public DashboardPage() {
     heading.shouldBe(visible);
   }
 
 
 
-/*public int getCardBalance (DataHelper.CardInfo cardInfo){
-    var text = cards.findBy(cardInfo.getCardNumber().substring(15))).getText();
+ /* public int getCardBalance(DataHelper.CardInfo cardInfo) {
+    var text = cards.findBy(text(cardInfo.getCardNumber().substring(15))).getText();
     return extractBalance(text);
   }*/
 
-  public int getCardBalance (int index) {
-    var text = cards.get(index).getText();
+  private int extractBalance(String text) {
+    val start = text.indexOf(balanceStart);
+    val finish = text.indexOf(balanceFinish);
+    val value = text.substring(start + balanceStart.length(), finish);
+    return Integer.parseInt(value);
+  }
+  public int getCardBalance(int index) {
+    val text = cards.get(index).getText();
     return extractBalance(text);
-
-
   }
 
   public TransferPage selectCardToTransfer(DataHelper.CardInfo cardinfo){
@@ -44,11 +48,6 @@ public class DashboardPage {
   }
 
 
-  private int extractBalance(String text) {
-    val start = text.indexOf(balanceStart);
-    val finish = text.indexOf(balanceFinish);
-    val value = text.substring(start + balanceStart.length(), finish);
-    return Integer.parseInt(value);
-  }
+
 
 }
