@@ -14,10 +14,10 @@ public class TransferPage {
 
 
     private final SelenideElement transferButton = $("[data-test-id='action-transfer']");
-    private final SelenideElement amountInputNew = $("[data-test-id='amount' input]");
+    private final SelenideElement amountInputNew = $("[data-test-id='amount'] input");
     private final SelenideElement transferHead = $(byText("Пополнение карты"));
     private final SelenideElement errorMessage = $("[data-test-id='error-message']");
-    private SelenideElement fromInput;
+    private SelenideElement fromInput = $("[data-test-id='from'] input");;
 
     public TransferPage() {
         transferHead.shouldBe(visible);

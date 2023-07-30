@@ -33,7 +33,7 @@ class MoneyTransferTest {
     var authInfo = DataHelper.getAuthInfo();
     var verificationPage = loginPage.validLogin(authInfo);
     var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-    verificationPage.validVerify(verificationCode);
+    dashboardPage = verificationPage.validVerify(verificationCode);
 
   }
 
@@ -48,29 +48,29 @@ class MoneyTransferTest {
       var expectedBalanceFirstCard = firstCardBalance - amount;
       var expectedBalanceSecondCard = secondCardBalance + amount;
       var transferPage = dashboardPage.selectCardToTransfer(secondCard);
-      dashboardPage = transferPage.makeValidTransfer(String.valueOf(amount), secondCard);
+      dashboardPage = transferPage.makeValidTransfer(String.valueOf(amount), firstCard);
       var actualBalanceFirstCard = dashboardPage.getCardBalance(DataHelper.getFirstIndex());
       var actualBalanceSecondCard = dashboardPage.getCardBalance(DataHelper.getSecondIndex());
       assertEquals(expectedBalanceFirstCard,actualBalanceFirstCard);
       assertEquals(expectedBalanceSecondCard,actualBalanceSecondCard);
   }
 
-   /*@Test
+   @Test
 
     void shouldGetErrorMessageIfAmountMoreBalance(){
       var firstCardInfo = getFirstCardInfo();
       var secondCardInfo = getSecondCardInfo();
-      var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
-      var secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
+      var firstCardBalance = dashboardPage.getCardBalance(DataHelper.getFirstIndex());
+      var secondCardBalance = dashboardPage.getCardBalance(DataHelper.getSecondIndex());
       var amount = generateInvalidAmount(secondCardBalance);
       var transferPage = dashboardPage.selectCardToTransfer(firstCardInfo);
       transferPage.makeTransfer(String.valueOf(amount),secondCardInfo);
       transferPage.findErrorMessage("Вы пытаетесь перевести сумму, превышающую остаток на карте списания");
-      var actualBalanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
-      var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
+      var actualBalanceFirstCard = dashboardPage.getCardBalance(DataHelper.getFirstIndex());
+      var actualBalanceSecondCard = dashboardPage.getCardBalance(DataHelper.getSecondIndex());
       assertEquals(firstCardBalance, actualBalanceFirstCard);
       assertEquals(secondCardBalance, actualBalanceSecondCard);
 
-    }*/
+    }
 }
 
